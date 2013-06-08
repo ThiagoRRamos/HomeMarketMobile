@@ -2,11 +2,8 @@
 <resources>
 
     <string name="app_name">Home Market</string>
-    <string name="edit_message">Digite Mensagem</string>
-    <string name="button_send">Enviar</string>
+    <string name="title_activity_market">Home Market</string>
     <string name="action_settings">Configurações</string>
-    <string name="title_activity_main">Supermercados</string>
-    <string name="title_activity_display_message">Minha Mensagem</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">yataa!</string>
 
 </resources>
