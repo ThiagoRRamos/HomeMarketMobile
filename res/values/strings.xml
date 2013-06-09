@@ -5,5 +5,6 @@
     <string name="title_activity_market">Home Market</string>
     <string name="action_settings">Configurações</string>
     <string name="hello_world">yataa!</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>
