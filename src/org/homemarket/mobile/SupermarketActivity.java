@@ -70,7 +70,6 @@ public class SupermarketActivity extends Activity {
 				JSONArray supermercados = (JSONArray) jsonObjects.get("supermercados");
 				for (int i = 0; i < supermercados.length(); i++) {
 					JSONObject jsonOb = supermercados.getJSONObject(i);
-					viewContent.append("Supermercado: ");
 					viewContent.append(jsonOb.get("nome_exibicao"));
 					viewContent.append("\n");
 				}
