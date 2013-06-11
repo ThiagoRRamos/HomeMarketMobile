@@ -4,7 +4,7 @@
     <string name="app_name">Home Market</string>
     <string name="title_activity_market">Home Market</string>
     <string name="action_settings">Configurações</string>
-    <string name="hello_world">yataa!</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="hello_world">Home do aplicativo!</string>
+    <string name="title_activity_supermarket">SupermarketActivity</string>
 
 </resources>

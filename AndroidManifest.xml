@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.homemarket.mobile.DetailActivity"
-            android:label="@string/title_activity_detail"
+            android:name="org.homemarket.mobile.SupermarketActivity"
+            android:label="@string/title_activity_supermarket"
             android:parentActivityName="org.homemarket.mobile.MarketActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
