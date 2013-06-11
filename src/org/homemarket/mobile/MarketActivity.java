@@ -1,16 +1,20 @@
 package org.homemarket.mobile;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 public class MarketActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_market);
+	
 	}
 
 	@Override
@@ -20,4 +24,9 @@ public class MarketActivity extends Activity {
 		return true;
 	}
 
+	public void sendMessage(View view) {
+		Intent intent = new Intent(this, SupermarketActivity.class);
+		startActivity(intent);
+
+	}
 }

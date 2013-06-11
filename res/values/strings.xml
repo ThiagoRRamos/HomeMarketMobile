@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Home Market</string>
-    <string name="title_activity_market">Home Market</string>
+    <string name="app_name">MyHomeMarket</string>
+    <string name="title_activity_market">MyHomeMarket</string>
     <string name="action_settings">Configurações</string>
     <string name="hello_world">Home do aplicativo!</string>
-    <string name="title_activity_supermarket">SupermarketActivity</string>
+    <string name="title_activity_supermarket">MyHomeMarket</string>
 
 </resources>
