@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -53,23 +55,32 @@ public class SupermarketActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		String body;
+		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		TextView textView;
+		textView = new TextView(this);
 		try {
-			ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-			TextView textView;
-			textView = new TextView(this);
-			
 			if (networkInfo != null && networkInfo.isConnected()) {
-				body = getStringContent("http://echo.jsontest.com/key/value/one/two");
+				body = getStringContent("http://pacific-chamber-4578.herokuapp.com/json/supermercado/");
 				textView.setTextSize(40);
-				textView.setText(body);
+				JSONObject jsonObjects;
+				jsonObjects = new JSONObject(body);
+				
+				StringBuffer viewContent = new StringBuffer();
+				JSONArray supermercados = (JSONArray) jsonObjects.get("supermercados");
+				for (int i = 0; i < supermercados.length(); i++) {
+					JSONObject jsonOb = supermercados.getJSONObject(i);
+					viewContent.append("Supermercado: ");
+					viewContent.append(jsonOb.get("nome_exibicao"));
+					viewContent.append("\n");
+				}
+				textView.setText(viewContent);
 				setContentView(textView);
 			} else {
 				textView.setTextSize(40);
 				textView.setText("Sem conexão à internet");
 				setContentView(textView);
 			}
-			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,13 +102,6 @@ public class SupermarketActivity extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.supermarket, menu);
-		return true;
 	}
 
 	@Override
