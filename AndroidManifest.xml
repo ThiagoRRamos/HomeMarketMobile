@@ -25,6 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.homemarket.mobile.SupermarketActivity"
+            android:label="@string/title_activity_supermarket"
+            android:parentActivityName="org.homemarket.mobile.MarketActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.homemarket.mobile.MarketActivity" />
+        </activity>
     </application>
 
 </manifest>
