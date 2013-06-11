@@ -19,8 +19,9 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class SupermarketActivity extends Activity {
@@ -49,47 +50,48 @@ public class SupermarketActivity extends Activity {
 			urlConnection.disconnect();
 		}
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		setContentView(R.layout.activity_supermarket);
+
 		String body;
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		TextView textView;
 		textView = new TextView(this);
+		ArrayAdapter<String> adapter = null;
 		try {
 			if (networkInfo != null && networkInfo.isConnected()) {
 				body = getStringContent("http://pacific-chamber-4578.herokuapp.com/json/supermercado/");
 				textView.setTextSize(40);
 				JSONObject jsonObjects;
 				jsonObjects = new JSONObject(body);
-				
-				StringBuffer viewContent = new StringBuffer();
-				JSONArray supermercados = (JSONArray) jsonObjects.get("supermercados");
+				JSONArray supermercados = (JSONArray) jsonObjects
+						.get("supermercados");
+				String[] markets = new String[supermercados.length()];
 				for (int i = 0; i < supermercados.length(); i++) {
 					JSONObject jsonOb = supermercados.getJSONObject(i);
-					viewContent.append(jsonOb.get("nome_exibicao"));
-					viewContent.append("\n");
+					markets[i] = jsonOb.get("nome_exibicao").toString();
 				}
-				textView.setText(viewContent);
-				setContentView(textView);
+				adapter = new ArrayAdapter<String>(this, R.layout.simple_row,
+						markets);
+
 			} else {
 				textView.setTextSize(40);
 				textView.setText("Sem conexão à internet");
 				setContentView(textView);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		setContentView(R.layout.activity_supermarket);
-		// Show the Up button in the action bar.
+
+		ListView listSuper = (ListView) findViewById(R.id.listView);
+		listSuper.setAdapter(adapter);
+
 		setupActionBar();
 	}
 
